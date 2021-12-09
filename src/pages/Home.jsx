@@ -1,5 +1,6 @@
 import React , {useState} from 'react';
 import styled from 'styled-components';
+import {Header} from '../components/Header';
 
 const Homepage = styled.div`
     min-width : 480px;
@@ -14,7 +15,7 @@ const Home = () => {
 
     return (
         <Homepage>
-           
+           <Header></Header>
         </Homepage>
     );
 }
