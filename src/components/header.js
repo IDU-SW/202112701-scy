@@ -1,34 +1,42 @@
 import React, {useState,useRef,useEffect} from 'react';
 import styled from 'styled-components';
 
-const Menu = styled.div`
-width: 100%;
-display: flex;
-align-items: center;
-background-color:#f0f0f0;
-padding-bottom:30px;
+const Menu = styled.nav`
+    width: 100%;
+    overflow: auto;
+    box-shadow: 0 2px 2px -2px rgb(0 0 0 / 20%);
 `;
-const MenuBox = styled.ul`
-margin : 0 auto;
-margin-top:30px;
+const MenuDiv = styled.div`
+    display: block;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 80%;
+    position: relative;
+    text-align: left;
 `;
-const MenuList = styled.li`
-list-style-type:none;
-float:left;
-margin-right:100px;
+const MenuLogo = styled.h2`
+    &:hover {
+        cursor: pointer;
+        opacity: .6;
+    }
 `;
-const Btn = styled.button`
-border: none; 
-border-radius: 0; 
-background-color: #d0ebff; 
-color: #1c7ed6; 
-height: 50px; 
-width: 50px; 
-font-weight: bold;
-&:hover {
-    cursor: pointer;
-    background-color: #1f9dfa;
-  }
+const MenuUl = styled.ul`
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+`;
+const MenuLi = styled.li`
+    color: #555;
+    display: inline-block;
+    padding: 0 2rem 0 0;
+    &:hover {
+        cursor: pointer;
+        opacity: .6;
+      }
 `;
 
 export const Header = () => {
@@ -44,11 +52,15 @@ export const Header = () => {
 
     return (
         <Menu>
-            <MenuBox>
-                <MenuList>끄적끄적</MenuList>
-                <MenuList>뷰티</MenuList>
-                <MenuList>코딩</MenuList>
-            </MenuBox>
+            <MenuDiv>
+                <MenuLogo href="/">
+                    eebbni
+                </MenuLogo>
+                <MenuUl>
+                    <MenuLi>About</MenuLi>
+                    <MenuLi>Portfolio</MenuLi>
+                </MenuUl>
+            </MenuDiv>
         </Menu>
     );
 }
