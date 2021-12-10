@@ -62,15 +62,15 @@ export const Header = () => {
     return (
         <BrowserRouter>
             <Menu>
-            <MenuDiv>
-                <MenuLogo href="/">
-                    eebbni
-                </MenuLogo>
-                <MenuUl>
-                    <MenuLi><Link to="">About</Link></MenuLi>
-                    <MenuLi><Link to="/portfolio">Portfolio</Link></MenuLi>
-                </MenuUl>
-            </MenuDiv>
+                <MenuDiv>
+                    <MenuLogo href="/">
+                        eebbni
+                    </MenuLogo>
+                    <MenuUl>
+                        <MenuLi><Link to="">About</Link></MenuLi>
+                        <MenuLi><Link to="/portfolio">Portfolio</Link></MenuLi>
+                    </MenuUl>
+                </MenuDiv>
             </Menu>
             <Routes>
                 <Route path='/' element={<Main />} />

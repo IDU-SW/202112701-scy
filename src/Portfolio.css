@@ -1,0 +1,50 @@
+a 
+{
+    color: #999;
+    text-decoration: none;
+}
+.portfolio-item 
+{
+    border-bottom: 1px solid #e5e5e5;
+    color: #555;
+    display: inline-block;
+    padding: 2rem 0;
+}
+.portfolio-title 
+{
+    color: #353535;
+    display: block;
+    font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+.portfolio-line 
+{
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    border-top: 0.2rem solid #353535;
+    display: block;
+    width: 2rem;
+}
+.portfolio-content 
+{
+    margin-top: 1rem;
+    color: #353535;
+    font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 1rem;
+}
+.portfolio-icon 
+{
+    margin-left: 1.3rem;
+    line-height: 2rem;
+}
+.fa, .fas 
+{
+    font-weight: 900;
+}
+.portfolio-icon-text 
+{
+    margin-left: 0.8rem;
+}
