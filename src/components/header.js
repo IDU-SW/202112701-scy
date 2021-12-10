@@ -8,7 +8,8 @@ import {
     Outlet
   } from 'react-router-dom';
 import {Main} from '../components/Main';
-  
+import {Portfolio} from '../components/Portfolio';
+
 const Menu = styled.nav`
     width: 100%;
     overflow: auto;
@@ -72,9 +73,8 @@ export const Header = () => {
             </MenuDiv>
             </Menu>
             <Routes>
-                <Route path='/' element={<Main />} >
-                <Route path='/portfolio' element={<Main />} />
-                </Route>
+                <Route path='/' element={<Main />} />
+                <Route path='/portfolio' element={<Portfolio />} />
             </Routes>
         </BrowserRouter>
        
