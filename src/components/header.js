@@ -1,6 +1,14 @@
 import React, {useState,useRef,useEffect} from 'react';
 import styled from 'styled-components';
-
+import {
+    Link,
+    BrowserRouter,
+    Routes,
+    Route,
+    Outlet
+  } from 'react-router-dom';
+import {Main} from '../components/Main';
+  
 const Menu = styled.nav`
     width: 100%;
     overflow: auto;
@@ -51,16 +59,24 @@ export const Header = () => {
     // };
 
     return (
-        <Menu>
+        <BrowserRouter>
+            <Menu>
             <MenuDiv>
                 <MenuLogo href="/">
                     eebbni
                 </MenuLogo>
                 <MenuUl>
-                    <MenuLi>About</MenuLi>
-                    <MenuLi>Portfolio</MenuLi>
+                    <MenuLi><Link to="">About</Link></MenuLi>
+                    <MenuLi><Link to="/portfolio">Portfolio</Link></MenuLi>
                 </MenuUl>
             </MenuDiv>
-        </Menu>
+            </Menu>
+            <Routes>
+                <Route path='/' element={<Main />} >
+                <Route path='/portfolio' element={<Main />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+       
     );
 }

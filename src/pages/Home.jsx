@@ -17,7 +17,6 @@ const Home = () => {
     return (
         <Homepage>
            <Header></Header>
-           <Main></Main>
         </Homepage>
     );
 }
