@@ -57,7 +57,7 @@ export const InputBox = ({pfList,setPfList}) => {
     const onClickBtn = () => {
         if(!title || !project || !skill)
         {
-            alert('값을 다시 입력해주세요');
+            alert('값이 빠졌습니다. 빈값을 확인하고 다시 입력해주세요');
             return false;
         }
 
