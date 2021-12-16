@@ -74,6 +74,7 @@ export const Header = () => {
             </Menu>
             <Routes>
                 <Route path='/' element={<Main />} />
+                <Route path='/202112701-scy' element={<Main />} />
                 <Route path='/portfolio' element={<Portfolio />} />
             </Routes>
         </BrowserRouter>
