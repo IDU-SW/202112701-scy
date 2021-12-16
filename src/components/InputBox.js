@@ -73,8 +73,11 @@ export const InputBox = ({pfList,setPfList}) => {
 
         setPfList(nextpfList);
 
-        // //input값 초기화
-        // setText('');
+        //input값 초기화
+        setTitle('');
+        setProject('');
+        setSkill('');
+        
         // inputRef.current.focus(); //클릭 후 포커싱
         console.log(pfList);
     }
