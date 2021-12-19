@@ -48,7 +48,7 @@ const MenuLi = styled.li`
       }
 `;
 
-export const Header = () => {
+export const Header = ({pfList,setPfList}) => {
 
     // const [anchorEl, setAnchorEl] = React.useState(null);
     // const open = Boolean(anchorEl);
@@ -75,7 +75,7 @@ export const Header = () => {
             <Routes>
                 <Route path='/' element={<Main />} />
                 <Route path='/202112701-scy' element={<Main />} />
-                <Route path='/portfolio' element={<Portfolio />} />
+                <Route path='/portfolio' element={<Portfolio pfList={pfList} setPfList={setPfList}/>} />
             </Routes>
         </BrowserRouter>
        

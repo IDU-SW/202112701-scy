@@ -7,11 +7,7 @@ margin-top: 30px;
 display: flex;
 flex-direction: column;
 `;
-const ListTitle = styled.p`
-font-weight: bold;
-margin: 0;
-}
-`
+
 const List = styled.ul`
 list-style: none;
 display: flex;
@@ -19,7 +15,9 @@ flex-direction: column;
 justify-content: center;
  padding: 0;
 `;
+
 const PfList = ({pfList,setPfList}) => {
+    
     return(
         <ListBox>
             <List>

@@ -12,11 +12,11 @@ const Homepage = styled.div`
 `;
 
 const Home = () => {
-   // const [todoList, setTodoList] = useState([]);
+    const [pfList, setPfList] = useState([]); //전체 포트폴리오 리스트
 
     return (
         <Homepage>
-           <Header></Header>
+           <Header pfList={pfList} setPfList={setPfList}></Header>
         </Homepage>
     );
 }

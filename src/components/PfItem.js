@@ -1,23 +1,10 @@
 import React, { useEffect , useState , useRef} from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
-const ItemBox = styled.li`
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    height: 36px;
-`;
-const ItemName = styled.span`
-    flex: 1;
-    ${({chk}) => {
-        return chk === true ? 
-        'font-style: italic; text-decoration: line-through; color: #868e96;'
-        : null;
-    }}
-`;
-const CheckBox = styled.input`
-    margin-right: 10px;
-`;
 const EditBtn = styled.button`
     border: none; 
 
@@ -25,17 +12,6 @@ const EditBtn = styled.button`
     height: 36px; 
     width: 36px; 
     margin-right: 3px;
-    background-color: inherit;
-    &:hover {
-        cursor: pointer;
-        background-color: #d0ebff;
-      }
-`;
-const DelBtn = styled.button`
-    border: none; 
-    border-radius: 0; 
-    height: 36px; 
-    width: 36px; 
     background-color: inherit;
     &:hover {
         cursor: pointer;
@@ -55,32 +31,7 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
     const editInputRef = useRef(null);
 
     const [edited,setEdited] = useState(false);
-    const [newText,setnewText] = useState(todoItem.text);//처음에는 기존의 값임
-
-    const onClickDelete = () => {
-        if(window.confirm('지우겠습니까?'))
-        {
-            const nextTodoList = todoList.map((item)=>(
-                {
-                    ...item,
-                    deleted : item.id === todoItem.id ? true : item.deleted
-                }
-            ));
-            setTodoList(nextTodoList);
-        }
-    }
-    const onChangeChk = () => {
-        //리스트를 돌리면서 해당하는 id값인 경우 done을 반대로 처리함.
-        //아니라면 그냥 done 값 유지
-        const nextTodoList = todoList.map((item) => (
-            {
-                ...item,
-                done : item.id === todoItem.id ? !item.done : item.done
-            }
-        ));
-        //다시 투두 리스트 값 설정
-        setTodoList(nextTodoList);
-    };
+    const [newText,setnewText] = useState(pfItem.title);//처음에는 기존의 값임 , 제목만 수정가능..
 
     //수정버튼으로 변경하기
     const onClickEditButton = () => 
@@ -95,13 +46,13 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
 
     //서브밋시키기
     function onClickSubmitButton (){
-        const nextTodoList = todoList.map((item)=>(
+        const nextpfList = pfList.map((item)=>(
             {
                 ...item,
-                text : item.id === todoItem.id ? newText : item.text
+                title : item.id === pfItem.id ? newText : item.title
             }
         ));
-        setTodoList(nextTodoList); //새롭게 리스트 수정
+        setPfList(nextpfList); //새롭게 리스트 수정
 
         setEdited(false); // 수정상태에서 다시 읽기로 변경
     }
@@ -113,28 +64,48 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
         }
     },[edited]);
     
+    const sticky_note = <FontAwesomeIcon icon={faStickyNote} />
+    const calendar_alt = <FontAwesomeIcon icon={faCalendarAlt} />
+    const fa_cog = <FontAwesomeIcon icon={faCog} />
+
     return (
-        <ItemBox>
-            <CheckBox onChange={onChangeChk} type="checkbox" />
-            {
-                edited ? <EditInput
-                        type="text"
-                        value={newText}
-                        ref={editInputRef}
-                        onChange={onChangeEdit}
-                        /> :
-                        <ItemName>{todoItem.text}</ItemName>
+        <div class="portfolio-item">
+                <div>
+                    <h1 class="portfolio-title">
+                        {
+                            edited ? 
+                            <EditInput
+                                type="text"
+                                value={newText}
+                                ref={editInputRef}
+                                onChange={onChangeEdit}
+                            /> :
+                            pfItem.title
+                         }
+                    </h1>
+                    <div class="portfolio-line"></div>
+
+                    <div class="portfolio-content"> 
+                        <span class="portfolio-icon">
+                            {sticky_note} <span class="portfolio-icon-text">{pfItem.project}</span>
+                        </span>
+                        <br/>
+                        <span class="portfolio-icon">
+                            {calendar_alt} <span class="portfolio-icon-text">{pfItem.date}</span>
+                        </span>
+                        <br/>
+                        <span class="portfolio-icon">
+                            {fa_cog} <span class="portfolio-icon-text">{pfItem.skill}</span>
+                        </span>
+                    </div>
+                </div>
+            { 
+                edited ? 
+                (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
+                (<EditBtn type="button" onClick={onClickEditButton}> ✏ </EditBtn>)
             }
-            
-            { //중간에 바꾸고 싶으면 대괄호 쓰기(완료된 경우 수정 버튼 사용 불가)
-                !todoItem.done ? 
-                    edited ? 
-                    (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
-                    (<EditBtn type="button" onClick={onClickEditButton}> ✏ </EditBtn>)
-                    : null
-            }
-            <DelBtn type="button" onClick={onClickDelete}> 🗑 </DelBtn>
-        </ItemBox>
+
+        </div>
     );
 }
 
