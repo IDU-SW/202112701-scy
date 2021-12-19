@@ -79,7 +79,7 @@ export const InputBox = ({pfList,setPfList}) => {
         setSkill('');
         
         // inputRef.current.focus(); //클릭 후 포커싱
-        console.log(pfList);
+        console.log(nextpfList);
     }
 
     return (
