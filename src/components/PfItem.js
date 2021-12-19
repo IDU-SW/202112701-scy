@@ -5,6 +5,14 @@ import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 
+const ItemName = styled.span`
+    flex: 1;
+    ${({chk}) => {
+        return chk === true ? 
+        'font-style: italic; text-decoration: line-through; color: #868e96;'
+        : null;
+    }}
+`;
 const EditBtn = styled.button`
     border: none; 
 
@@ -37,8 +45,10 @@ padding: 5px;
 font-size: 1em; 
 box-sizing: border-box;
 `;
-
-const PfItem = ({pfItem,pfList,setPfList}) => {
+const CheckBox = styled.input`
+    margin-right: 10px;
+`;
+const PfItem = ({pfItem,pfList,setPfList,checked}) => {
     const editInputRef = useRef(null);
 
     const [edited,setEdited] = useState(false);
@@ -56,6 +66,19 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
             setPfList(nextpfList);
         }
     }
+
+    const onChangeChk = () => {
+        //리스트를 돌리면서 해당하는 id값인 경우 done을 반대로 처리함.
+        //아니라면 그냥 done 값 유지
+        const nextpfList = pfList.map((item) => (
+            {
+                ...item,
+                done : item.id === pfItem.id ? !item.done : item.done
+            }
+        ));
+        //다시 리스트 값 설정
+        setPfList(nextpfList);
+    };
 
     //수정버튼으로 변경하기
     const onClickEditButton = () => 
@@ -96,6 +119,7 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
         <div class="portfolio-item">
                 <div>
                     <h1 class="portfolio-title">
+                    <CheckBox onChange={onChangeChk} checked={pfItem.done} type="checkbox" />
                         {
                             edited ? 
                             <EditInput
@@ -104,7 +128,7 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
                                 ref={editInputRef}
                                 onChange={onChangeEdit}
                             /> :
-                            pfItem.title
+                           <ItemName chk={checked}>{pfItem.title}</ItemName>
                          }
                     </h1>
                     <div class="portfolio-line"></div>
@@ -124,9 +148,11 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
                     </div>
                 </div>
             { 
-                edited ? 
-                (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
-                (<EditBtn type="button" onClick={onClickEditButton}> ✏ </EditBtn>)
+                !pfItem.done ? 
+                    edited ? 
+                    (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
+                    (<EditBtn type="button" onClick={onClickEditButton}> ✏ </EditBtn>)
+                : null
             }
             <DelBtn type="button" onClick={onClickDelete}> 🗑 </DelBtn>
         </div>

@@ -18,8 +18,16 @@ export const Portfolio = ({pfList,setPfList}) => {
             <InputBox pfList={pfList} setPfList={setPfList}/>
             <Count pfList={pfList}/>
             <PfList 
+                title={'진행중인 프로젝트'}
                 pfList={pfList}
                 setPfList={setPfList}
+                checkedList={false}
+            />
+            <PfList 
+                title={'완료된 프로젝트'}
+                pfList={pfList}
+                setPfList={setPfList}
+                checkedList={true}
             />
         </PortfolioMain>
     );

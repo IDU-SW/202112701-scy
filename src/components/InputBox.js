@@ -68,7 +68,8 @@ export const InputBox = ({pfList,setPfList}) => {
             title : title,
             project : project,
             skill : skill,
-            date : today.getFullYear()+'-'+(today.getMonth() + 1)+'-'+today.getDate()
+            date : today.getFullYear()+'-'+(today.getMonth() + 1)+'-'+today.getDate(),
+            done : false
         })
 
         setPfList(nextpfList);
