@@ -18,6 +18,17 @@ const EditBtn = styled.button`
         background-color: #d0ebff;
       }
 `;
+const DelBtn = styled.button`
+    border: none; 
+    border-radius: 0; 
+    height: 36px; 
+    width: 36px; 
+    background-color: inherit;
+    &:hover {
+        cursor: pointer;
+        background-color: #d0ebff;
+      }
+`;
 const EditInput = styled.input`
 flex: 1; 
 border: none; 
@@ -32,6 +43,19 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
 
     const [edited,setEdited] = useState(false);
     const [newText,setnewText] = useState(pfItem.title);//처음에는 기존의 값임 , 제목만 수정가능..
+
+    const onClickDelete = () => {
+        if(window.confirm('해당 포트폴리오를 지우겠습니까?'))
+        {
+            const nextpfList = pfList.map((item)=>(
+                {
+                    ...item,
+                    deleted : item.id === pfItem.id ? true : item.deleted
+                }
+            ));
+            setPfList(nextpfList);
+        }
+    }
 
     //수정버튼으로 변경하기
     const onClickEditButton = () => 
@@ -104,7 +128,7 @@ const PfItem = ({pfItem,pfList,setPfList}) => {
                 (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
                 (<EditBtn type="button" onClick={onClickEditButton}> ✏ </EditBtn>)
             }
-
+            <DelBtn type="button" onClick={onClickDelete}> 🗑 </DelBtn>
         </div>
     );
 }
