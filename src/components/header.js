@@ -7,8 +7,8 @@ import {
     Route,
     Outlet
   } from 'react-router-dom';
-import {Main} from '../components/Main';
-import {Portfolio} from '../components/Portfolio';
+import {Main} from '../pages/Main';
+import {Portfolio} from '../pages/Portfolio';
 
 const Menu = styled.nav`
     width: 100%;
@@ -24,6 +24,7 @@ const MenuDiv = styled.div`
     text-align: left;
 `;
 const MenuLogo = styled.h2`
+    color: #000000 !important;
     &:hover {
         cursor: pointer;
         opacity: .6;
@@ -54,17 +55,18 @@ export const Header = ({pfList,setPfList}) => {
         <BrowserRouter>
             <Menu>
                 <MenuDiv>
-                    <MenuLogo href="/">
-                        eebbni
-                    </MenuLogo>
+                    <Link to="/">
+                    <MenuLogo>eebbni</MenuLogo>
+                    </Link>
                     <MenuUl>
-                        <MenuLi><Link to="">About</Link></MenuLi>
+                        <MenuLi><Link to="/about">About</Link></MenuLi>
                         <MenuLi><Link to="/portfolio">Portfolio</Link></MenuLi>
                     </MenuUl>
                 </MenuDiv>
             </Menu>
             <Routes>
                 <Route path='/' element={<Main />} />
+                <Route path='/about' element={<Main />} />
                 <Route path='/202112701-scy' element={<Main />} />
                 <Route path='/portfolio' element={<Portfolio pfList={pfList} setPfList={setPfList}/>} />
             </Routes>

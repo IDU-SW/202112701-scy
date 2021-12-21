@@ -1,33 +1,12 @@
-import React, {useState,useRef,useEffect} from 'react';
-import Button from '@mui/material/Button';
+import React, {useState,useRef} from 'react';
 import styled from 'styled-components';
+import Button from '@mui/material/Button';
 
 const Inputbox = styled.div`
     margin-top:20px;
     padding:10px;
     width: 350px;
     border : 1px solid #000000; 
-`;
-const Inputbox_inp = styled.input`
-flex: 1; 
-border: none; 
-border-bottom: 1px solid #f1f3f5; 
-padding: 10px; 
-height: 50px; 
-box-sizing: border-box;
-`;
-const Btn = styled.button`
-border: none; 
-border-radius: 0; 
-background-color: #d0ebff; 
-color: #1c7ed6; 
-height: 30px; 
-width: 50px; 
-font-weight: bold;
-&:hover {
-    cursor: pointer;
-    background-color: #1f9dfa;
-  }
 `;
 
 export const InputBox = ({pfList,setPfList}) => {
@@ -89,7 +68,7 @@ export const InputBox = ({pfList,setPfList}) => {
             제목 : <input type="text" name="title" ref={inputRef} onChange={TitleHandler} value={title}/> <br/>
             프로젝트명 : <input type="text" name="project" onChange={ProjectHandler} value={project}/> <br/>
             사용 스킬명 : <input type="text" name="skill" onChange={SkillHandler} value={skill}/> <br/>
-            <Btn onClick={onClickBtn} type="submit">추가</Btn>
+            <Button variant="outlined" onClick={onClickBtn} type="submit">추가</Button>
         </Inputbox>
     );
 }
