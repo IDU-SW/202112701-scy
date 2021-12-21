@@ -16,13 +16,13 @@
 
 <h3>구현기능 🔨</h3>
 
-- 포트폴리오 메인페이지
+- 포트폴리오 메인페이지 <br>
 ![image](https://user-images.githubusercontent.com/51107860/146896432-6655e5e0-9aa0-41a8-947c-ab8570dabea1.png)
 
-- 메뉴 헤더
+- 메뉴 헤더 <br>
 ![image](https://user-images.githubusercontent.com/51107860/146897195-0c20fa1c-8fe9-41e9-bf8f-904451587b0e.png)
 
-- 포트폴리오 리스트 보기
+- 포트폴리오 리스트 보기 <br>
 ![image](https://user-images.githubusercontent.com/51107860/146897329-7f9a93fd-2d2a-4aa6-b670-4d0432c34aa3.png)
 - 포트폴리오 추가
 - 포트폴리오 삭제
