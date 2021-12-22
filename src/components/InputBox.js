@@ -13,7 +13,7 @@ export const InputBox = ({pfList,setPfList}) => {
     const [title,setTitle] = useState('');
     const [project,setProject] = useState('');
     const [skill,setSkill] = useState('');
-    const [portfolio,setPortfolio] = useState('');
+
     const inputRef = useRef(null);
 
     //정상동작 확인(pfList에 대해서)

@@ -15,7 +15,6 @@ const ItemName = styled.span`
 `;
 const EditBtn = styled.button`
     border: none; 
-
     border-radius: 0; 
     height: 36px; 
     width: 36px; 
@@ -39,8 +38,7 @@ const DelBtn = styled.button`
 `;
 const EditInput = styled.input`
 flex: 1; 
-border: none; 
-border-bottom: 1px solid #f1f3f5; 
+border: 1px solid black; 
 padding: 5px; 
 font-size: 1em; 
 box-sizing: border-box;
@@ -52,7 +50,9 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
     const editInputRef = useRef(null);
 
     const [edited,setEdited] = useState(false);
-    const [newText,setnewText] = useState(pfItem.title);//처음에는 기존의 값임 , 제목만 수정가능..
+    const [newTitle,setnewTitle] = useState(pfItem.title);//처음에는 기존의 값
+    const [newProject,setnewProject] = useState(pfItem.title);//처음에는 기존의 값
+    const [newSkill,setnewSkill] = useState(pfItem.title);//처음에는 기존의 값
 
     const onClickDelete = () => {
         if(window.confirm('해당 포트폴리오를 지우겠습니까?'))
@@ -87,8 +87,16 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
     }
 
     //새로운 글자 세팅
-    const onChangeEdit = (e) => {
-        setnewText(e.target.value)
+    const onChangeEditTitle = (e) => {
+        setnewTitle(e.target.value);
+    }
+
+    const onChangeEditProject = (e) => {
+        setnewProject(e.target.value);
+    }
+
+    const onChangeEditSkill = (e) => {
+        setnewSkill(e.target.value);
     }
 
     //서브밋시키기
@@ -96,7 +104,9 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
         const nextpfList = pfList.map((item)=>(
             {
                 ...item,
-                title : item.id === pfItem.id ? newText : item.title
+                title : item.id === pfItem.id ? newTitle : item.title,
+                project : item.id === pfItem.id ? newProject : item.project,
+                skill : item.id === pfItem.id ? newSkill : item.skill
             }
         ));
         setPfList(nextpfList); //새롭게 리스트 수정
@@ -123,10 +133,11 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
                         {
                             edited ? 
                             <EditInput
+                                name="title"
                                 type="text"
-                                value={newText}
+                                value={newTitle}
                                 ref={editInputRef}
-                                onChange={onChangeEdit}
+                                onChange={onChangeEditTitle}
                             /> :
                            <ItemName chk={checked}>{pfItem.title}</ItemName>
                          }
@@ -135,7 +146,18 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
 
                     <div class="portfolio-content"> 
                         <span class="portfolio-icon">
-                            {sticky_note} <span class="portfolio-icon-text">{pfItem.project}</span>
+                            {sticky_note} <span class="portfolio-icon-text">
+                            {
+                                edited ? 
+                                    <EditInput
+                                        name="project"
+                                        type="text"
+                                        value={newProject}
+                                        onChange={onChangeEditProject}
+                                    /> :
+                                    <ItemName chk={checked}>{pfItem.project}</ItemName>
+                            }
+                         </span>
                         </span>
                         <br/>
                         <span class="portfolio-icon">
@@ -143,11 +165,23 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
                         </span>
                         <br/>
                         <span class="portfolio-icon">
-                            {fa_cog} <span class="portfolio-icon-text">{pfItem.skill}</span>
+                            {fa_cog} <span class="portfolio-icon-text">
+                            {
+                                edited ? 
+                                    <EditInput
+                                        name="skill"
+                                        type="text"
+                                        value={newSkill}
+                                        onChange={onChangeEditSkill}
+                                    /> :
+                                    <ItemName chk={checked}>{pfItem.skill}</ItemName>
+                            }
+                            </span>
                         </span>
                     </div>
                 </div>
             { 
+                //완료된 프로젝트는 수정 불가
                 !pfItem.done ? 
                     edited ? 
                     (<EditBtn type="button" onClick={onClickSubmitButton} > 👌 </EditBtn>) :
