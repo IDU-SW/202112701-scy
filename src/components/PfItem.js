@@ -51,8 +51,8 @@ const PfItem = ({pfItem,pfList,setPfList,checked}) => {
 
     const [edited,setEdited] = useState(false);
     const [newTitle,setnewTitle] = useState(pfItem.title);//처음에는 기존의 값
-    const [newProject,setnewProject] = useState(pfItem.title);//처음에는 기존의 값
-    const [newSkill,setnewSkill] = useState(pfItem.title);//처음에는 기존의 값
+    const [newProject,setnewProject] = useState(pfItem.project);//처음에는 기존의 값
+    const [newSkill,setnewSkill] = useState(pfItem.skill);//처음에는 기존의 값
 
     const onClickDelete = () => {
         if(window.confirm('해당 포트폴리오를 지우겠습니까?'))
